@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShareMarket - Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h2>📈 ShareMarket</h2>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="stocks.html">Stocks</a>
+    <a href="portfolio.html">Portfolio</a>
+  </nav>
+</header>
+
+<main>
+  <h1>My Portfolio</h1>
+  <div class="cards">
+    <div class="card">
+      <h3>Total Investment</h3>
+      <h2 id="investment">₹0</h2>
+    </div>
+    <div class="card">
+      <h3>Current Value</h3>
+      <h2 id="current">₹0</h2>
+    </div>
+    <div class="card">
+      <h3>Profit / Loss</h3>
+      <h2 id="profit">₹0</h2>
+    </div>
+  </div>
+
+  <h2>My Holdings</h2>
+  <table>
+    <thead>
+      <tr><th>Stock</th><th>Quantity</th><th>Buy Price</th><th>Current Price</th><th>P/L</th></tr>
+    </thead>
+    <tbody id="holdings"></tbody>
+  </table>
+</main>
+
+<footer>Sample portfolio only — no real investments.</footer>
+
+<script>
+const holdings = [
+  {name:"Reliance", qty:5, buy:1400, current:1450},
+  {name:"TCS", qty:2, buy:3100, current:3200},
+  {name:"Infosys", qty:4, buy:1500, current:1550}
+];
+
+let investment = 0;
+let currentValue = 0;
+
+document.getElementById("holdings").innerHTML = holdings.map(s => {
+  const invested = s.qty * s.buy;
+  const current = s.qty * s.current;
+  const profit = current - invested;
+
+  investment += invested;
+  currentValue += current;
+
+  return `<tr>
+    <td>${s.name}</td>
+    <td>${s.qty}</td>
+    <td>₹${s.buy.toLocaleString("en-IN")}</td>
+    <td>₹${s.current.toLocaleString("en-IN")}</td>
+    <td class="${profit >= 0 ? "green" : "red"}">₹${profit.toLocaleString("en-IN")}</td>
+  </tr>`;
+}).join("");
+
+document.getElementById("investment").textContent =
+  "₹" + investment.toLocaleString("en-IN");
+document.getElementById("current").textContent =
+  "₹" + currentValue.toLocaleString("en-IN");
+document.getElementById("profit").textContent =
+  (currentValue >= investment ? "+" : "-") +
+  "₹" + Math.abs(currentValue - investment).toLocaleString("en-IN");
+</script>
+</body>
+</html>
+
