@@ -5,11 +5,11 @@ files:
     destination: /var/www/html/
 - source: /portfolio.html
     destination: /var/www/html/
+- source: /script.js
+    destination: /var/www/html/
 - source: /stock.html
     destination: /var/www/html/
 - source: /style.css
-    destination: /var/www/html/
-- source: /script.js
     destination: /var/www/html/
 
 hooks:
