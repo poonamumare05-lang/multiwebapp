@@ -3,7 +3,7 @@ os: linux
 files:
   - source: /index.html
     destination: /var/www/html
-  - source: /stock.html
+  - source: /stocks.html
     destination: /var/www/html
   - source: /portfolio.html
     destination: /var/www/html
